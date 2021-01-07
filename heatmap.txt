@@ -1,0 +1,411 @@
+// import HeatMap from "react-heatmap-grid";
+
+// const Heatmaps = (props) => {
+//   var strokeData = props.props.JSONdata ? props.props.JSONdata : {};
+//   const xLabels = new Array(31).fill(" ");
+//   xLabels[0] = "|<--";
+//   xLabels[1] = "-----";
+//   xLabels[2] = "-----";
+//   xLabels[3] = "-----";
+//   xLabels[4] = "-----";
+//   xLabels[5] = "-----";
+//   xLabels[6] = "-----";
+//   xLabels[7] = "L";
+//   xLabels[8] = "-----";
+//   xLabels[9] = "-----";
+//   xLabels[10] = "-----";
+//   xLabels[11] = "-----";
+//   xLabels[12] = "-----";
+//   xLabels[13] = "-----";
+//   xLabels[14] = "-----";
+//   xLabels[15] = ">|<";
+//   xLabels[16] = "-----";
+//   xLabels[17] = "-----";
+//   xLabels[18] = "-----";
+//   xLabels[19] = "-----";
+//   xLabels[20] = "-----";
+//   xLabels[21] = "-----";
+//   xLabels[22] = "-----";
+//   xLabels[23] = "R";
+//   xLabels[24] = "-----";
+//   xLabels[25] = "-----";
+//   xLabels[26] = "-----";
+//   xLabels[27] = "-----";
+//   xLabels[28] = "-----";
+//   xLabels[29] = "-----";
+//   xLabels[30] = "-->|";
+
+//   var dataValue = 0;
+
+//   const yLabels = [
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//     " ",
+//   ];
+//   var data = new Array(yLabels.length)
+//     .fill(0)
+//     .map(() => new Array(xLabels.length).fill(0).map(() => ++dataValue));
+
+//   var newData = new Array(18).fill(0).map(() => new Array(31).fill(0));
+//   for (dataValue = 0; dataValue < 18; dataValue++) {
+//     newData[dataValue][15] = "  |  ";
+//     newData[8][dataValue] = "-------";
+//     newData[9][dataValue] = "-------";
+//   }
+//   for (dataValue = 16; dataValue < 32; dataValue++) {
+//     newData[8][dataValue] = "-------";
+//     newData[9][dataValue] = "-------";
+//   }
+//   newData[8][15] = "  |  "
+//   newData[9][15] = "  |  "
+
+//   // const x_coord = 180;
+//   const y_coord = 93.75;
+
+//   strokeData && strokeData.data.forEach((data) => {
+//     if (data.dir === "R2L") {
+//       if (data.coords.L[1] <= y_coord) {
+//         newData[17][0]++;
+//       } else if (
+//         data.coords.L[1] > y_coord &&
+//         data.coords.L[1] <= 2 * y_coord
+//       ) {
+//         newData[16][0]++;
+//       } else if (
+//         data.coords.L[1] > 2 * y_coord &&
+//         data.coords.L[1] <= 3 * y_coord
+//       ) {
+//         newData[15][0]++;
+//       } else if (
+//         data.coords.L[1] > 3 * y_coord &&
+//         data.coords.L[1] <= 4 * y_coord
+//       ) {
+//         newData[14][0]++;
+//       } else if (
+//         data.coords.L[1] > 4 * y_coord &&
+//         data.coords.L[1] <= 5 * y_coord
+//       ) {
+//         newData[13][0]++;
+//       } else if (
+//         data.coords.L[1] > 5 * y_coord &&
+//         data.coords.L[1] <= 6 * y_coord
+//       ) {
+//         newData[12][0]++;
+//       } else if (
+//         data.coords.L[1] > 6 * y_coord &&
+//         data.coords.L[1] <= 7 * y_coord
+//       ) {
+//         newData[11][0]++;
+//       } else if (
+//         data.coords.L[1] > 7 * y_coord &&
+//         data.coords.L[1] <= 8 * y_coord
+//       ) {
+//         newData[10][0]++;
+//       } else if (
+//         data.coords.L[1] > 8 * y_coord &&
+//         data.coords.L[1] <= 9 * y_coord
+//       ) {
+//         newData[7][0]++;
+//       } else if (
+//         data.coords.L[1] > 9 * y_coord &&
+//         data.coords.L[1] <= 10 * y_coord
+//       ) {
+//         newData[6][0]++;
+//       } else if (
+//         data.coords.L[1] > 10 * y_coord &&
+//         data.coords.L[1] <= 11 * y_coord
+//       ) {
+//         newData[5][0]++;
+//       } else if (
+//         data.coords.L[1] > 11 * y_coord &&
+//         data.coords.L[1] <= 12 * y_coord
+//       ) {
+//         newData[4][0]++;
+//       } else if (
+//         data.coords.L[1] > 12 * y_coord &&
+//         data.coords.L[1] <= 13 * y_coord
+//       ) {
+//         newData[3][0]++;
+//       } else if (
+//         data.coords.L[1] > 13 * y_coord &&
+//         data.coords.L[1] <= 14 * y_coord
+//       ) {
+//         newData[2][0]++;
+//       } else if (
+//         data.coords.L[1] > 14 * y_coord &&
+//         data.coords.L[1] <= 15 * y_coord
+//       ) {
+//         newData[1][0]++;
+//       } else if (data.coords.L[1] > 15 * y_coord) {
+//         newData[0][0]++;
+//       }
+//     } else if (data.dir === "L2R") {
+//       if (data.coords.R[1] <= y_coord) {
+//         newData[17][0]++;
+//       } else if (
+//         data.coords.R[1] > y_coord &&
+//         data.coords.R[1] <= 2 * y_coord
+//       ) {
+//         newData[16][0]++;
+//       } else if (
+//         data.coords.R[1] > 2 * y_coord &&
+//         data.coords.R[1] <= 3 * y_coord
+//       ) {
+//         newData[15][0]++;
+//       } else if (
+//         data.coords.R[1] > 3 * y_coord &&
+//         data.coords.R[1] <= 4 * y_coord
+//       ) {
+//         newData[14][0]++;
+//       } else if (
+//         data.coords.R[1] > 4 * y_coord &&
+//         data.coords.R[1] <= 5 * y_coord
+//       ) {
+//         newData[13][0]++;
+//       } else if (
+//         data.coords.R[1] > 5 * y_coord &&
+//         data.coords.R[1] <= 6 * y_coord
+//       ) {
+//         newData[12][0]++;
+//       } else if (
+//         data.coords.R[1] > 6 * y_coord &&
+//         data.coords.R[1] <= 7 * y_coord
+//       ) {
+//         newData[11][0]++;
+//       } else if (
+//         data.coords.R[1] > 7 * y_coord &&
+//         data.coords.R[1] <= 8 * y_coord
+//       ) {
+//         newData[10][0]++;
+//       } else if (
+//         data.coords.R[1] > 8 * y_coord &&
+//         data.coords.R[1] <= 9 * y_coord
+//       ) {
+//         newData[7][0]++;
+//       } else if (
+//         data.coords.R[1] > 9 * y_coord &&
+//         data.coords.R[1] <= 10 * y_coord
+//       ) {
+//         newData[6][0]++;
+//       } else if (
+//         data.coords.R[1] > 10 * y_coord &&
+//         data.coords.R[1] <= 11 * y_coord
+//       ) {
+//         newData[5][0]++;
+//       } else if (
+//         data.coords.R[1] > 11 * y_coord &&
+//         data.coords.R[1] <= 12 * y_coord
+//       ) {
+//         newData[4][0]++;
+//       } else if (
+//         data.coords.R[1] > 12 * y_coord &&
+//         data.coords.R[1] <= 13 * y_coord
+//       ) {
+//         newData[3][0]++;
+//       } else if (
+//         data.coords.R[1] > 13 * y_coord &&
+//         data.coords.R[1] <= 14 * y_coord
+//       ) {
+//         newData[2][0]++;
+//       } else if (
+//         data.coords.R[1] > 14 * y_coord &&
+//         data.coords.R[1] <= 15 * y_coord
+//       ) {
+//         newData[1][0]++;
+//       } else {
+//         newData[0][0]++;
+//       }
+//     }
+//   });
+
+//   // strokeData.data &&
+//   //   strokeData.data.forEach((data) => {
+//   //     if (data.dir === "R2L") {
+//   //       if (data.coords.L[0] <= 320) {
+//   //         if (data.coords.L[1] <= 360) {
+//   //           newData[2][0]++;
+//   //         }
+//   //         if (data.coords.L[1] > 360 && data.coords.L[1] <= 720) {
+//   //           newData[1][0]++;
+//   //         }
+//   //         if (data.coords.L[1] > 720) {
+//   //           newData[0][0]++;
+//   //         }
+//   //       }
+//   //       if (data.coords.L[0] > 320 && data.coords.L[0] <= 640) {
+//   //         if (data.coords.L[1] <= 360) {
+//   //           newData[2][1]++;
+//   //         }
+//   //         if (data.coords.L[1] > 360 && data.coords.L[1] <= 720) {
+//   //           newData[1][1]++;
+//   //         }
+//   //         if (data.coords.L[1] > 720) {
+//   //           newData[0][1]++;
+//   //         }
+//   //       }
+//   //       if (data.coords.L[0] > 640 && data.coords.L[0] <= 960) {
+//   //         if (data.coords.L[1] <= 360) {
+//   //           newData[2][2]++;
+//   //         }
+//   //         if (data.coords.L[1] > 360 && data.coords.L[1] <= 720) {
+//   //           newData[1][2]++;
+//   //         }
+//   //         if (data.coords.L[1] > 720) {
+//   //           newData[0][2]++;
+//   //         }
+//   //       }
+//   //       if (data.coords.L[0] > 960 && data.coords.L[0] <= 1280) {
+//   //         if (data.coords.L[1] <= 360) {
+//   //           newData[2][3]++;
+//   //         }
+//   //         if (data.coords.L[1] > 360 && data.coords.L[1] <= 720) {
+//   //           newData[1][3]++;
+//   //         }
+//   //         if (data.coords.L[1] > 720) {
+//   //           newData[0][3]++;
+//   //         }
+//   //       }
+//   //       if (data.coords.L[0] > 1280 && data.coords.L[0] <= 1600) {
+//   //         if (data.coords.L[1] <= 360) {
+//   //           newData[2][4]++;
+//   //         }
+//   //         if (data.coords.L[1] > 360 && data.coords.L[1] <= 720) {
+//   //           newData[1][4]++;
+//   //         }
+//   //         if (data.coords.L[1] > 720) {
+//   //           newData[0][4]++;
+//   //         }
+//   //       }
+//   //       if (data.coords.L[0] > 1600 && data.coords.L[0] <= 1920) {
+//   //         if (data.coords.L[1] <= 360) {
+//   //           newData[2][5]++;
+//   //         }
+//   //         if (data.coords.L[1] > 360 && data.coords.L[1] <= 720) {
+//   //           newData[1][5]++;
+//   //         }
+//   //         if (data.coords.L[1] > 720) {
+//   //           newData[0][5]++;
+//   //         }
+//   //       }
+//   //     } else if (data.dir === "L2R") {
+//   //       if (data.coords.R[0] <= 320) {
+//   //         if (data.coords.R[1] <= 360) {
+//   //           newData[2][0]++;
+//   //         }
+//   //         if (data.coords.R[1] > 360 && data.coords.R[1] <= 720) {
+//   //           newData[1][0]++;
+//   //         }
+//   //         if (data.coords.R[1] > 720) {
+//   //           newData[0][0]++;
+//   //         }
+//   //       }
+//   //       if (data.coords.R[0] > 320 && data.coords.R[0] <= 640) {
+//   //         if (data.coords.R[1] <= 360) {
+//   //           newData[2][1]++;
+//   //         }
+//   //         if (data.coords.R[1] > 360 && data.coords.R[1] <= 720) {
+//   //           newData[1][1]++;
+//   //         }
+//   //         if (data.coords.R[1] > 720) {
+//   //           newData[0][1]++;
+//   //         }
+//   //       }
+//   //       if (data.coords.R[0] > 640 && data.coords.R[0] <= 960) {
+//   //         if (data.coords.R[1] <= 360) {
+//   //           newData[2][2]++;
+//   //         }
+//   //         if (data.coords.R[1] > 360 && data.coords.R[1] <= 720) {
+//   //           newData[1][2]++;
+//   //         }
+//   //         if (data.coords.R[1] > 720) {
+//   //           newData[0][2]++;
+//   //         }
+//   //       }
+//   //       if (data.coords.R[0] > 960 && data.coords.R[0] <= 1280) {
+//   //         if (data.coords.R[1] <= 360) {
+//   //           newData[2][3]++;
+//   //         }
+//   //         if (data.coords.R[1] > 360 && data.coords.R[1] <= 720) {
+//   //           newData[1][3]++;
+//   //         }
+//   //         if (data.coords.R[1] > 720) {
+//   //           newData[0][3]++;
+//   //         }
+//   //       }
+//   //       if (data.coords.R[0] > 1280 && data.coords.R[0] <= 1600) {
+//   //         if (data.coords.R[1] <= 360) {
+//   //           newData[2][4]++;
+//   //         }
+//   //         if (data.coords.R[1] > 360 && data.coords.R[1] <= 720) {
+//   //           newData[1][4]++;
+//   //         }
+//   //         if (data.coords.R[1] > 720) {
+//   //           newData[0][4]++;
+//   //         }
+//   //       }
+//   //       if (data.coords.R[0] > 1600 && data.coords.R[0] <= 1920) {
+//   //         if (data.coords.R[1] <= 360) {
+//   //           newData[2][5]++;
+//   //         }
+//   //         if (data.coords.R[1] > 360 && data.coords.R[1] <= 720) {
+//   //           newData[1][5]++;
+//   //         }
+//   //         if (data.coords.R[1] > 720) {
+//   //           newData[0][5]++;
+//   //         }
+//   //       }
+//   //     }
+//   //   });
+//   data = newData;
+
+//   return (
+//     <>
+//       <div className="row">
+//         <div className="col s12 center">
+//           <span className="btn-flat">{new Date().toString().slice(0, 15)}</span>
+//           <div className="divider black" style={{ padding: "1px" }}></div>
+//           <br />
+//           <HeatMap
+//             xLabels={xLabels}
+//             yLabels={yLabels}
+//             xLabelsLocation={"bottom"}
+//             xLabelWidth={50}
+//             data={data}
+//             height={30}
+//             squares
+//             onClick={(x, y) =>
+//               x < 15
+//                 ? window.M.toast({ html: "Left Side of the table" })
+//                 : x === 15 ? window.M.toast({ html: "Net" }) : window.M.toast({ html: "Right side of the table" })
+//             }
+//             cellStyle={(background, value, min, max, data, x, y) => ({
+//               background: `rgba(66, 86, 244, ${
+//                 1 - (max - value) / (max - min)
+//               })`,
+//               fontSize: "10px",
+//             })}
+//             cellRender={(value) => value && `${value}`}
+//             title={(value, unit) => `${value}`}
+//           />
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default Heatmaps;

@@ -36,6 +36,7 @@ const ImageCapture = (props) => {
           paddingBottom: "20px",
           marginTop: "20px",
         }}
+        className="center"
       >
         <Heatmaps props={props.location} />
       </div>
@@ -65,7 +66,6 @@ const ImageCapture = (props) => {
           </div>
         </div>
       </div>
-      <br />
       {image ? (
         <img
           id="screenshot_image"

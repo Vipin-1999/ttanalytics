@@ -2,22 +2,31 @@ import HeatMap from "react-heatmap-grid";
 
 const Heatmaps = (props) => {
   var strokeData = props.props.JSONdata ? props.props.JSONdata : {};
-  const xLabels = new Array(6).fill(" ");
+  const xLabels = new Array(7).fill(" ");
   xLabels[0] = "|<---------";
-  xLabels[1] = "L";
-  xLabels[2] = "--------->|";
-  xLabels[3] = "|<---------";
-  xLabels[4] = "R";
-  xLabels[5] = "--------->|";
+  xLabels[1] = "--------- L";
+  xLabels[2] = "-----------";
+  xLabels[3] = "--->|<---";
+  xLabels[4] = "-----------";
+  xLabels[5] = "R ---------";
+  xLabels[6] = "--------->|";
 
   var dataValue = 0;
 
-  const yLabels = [" ", " ", " "];
+  const yLabels = [
+    " ",
+    " ",
+    " ",
+  ];
   var data = new Array(yLabels.length)
     .fill(0)
     .map(() => new Array(xLabels.length).fill(0).map(() => ++dataValue));
 
-  var newData = new Array(3).fill(0).map(() => new Array(6).fill(0));
+  var newData = new Array(4).fill(0).map(() => new Array(7).fill(0));
+  for (dataValue = 0; dataValue < 3; dataValue++) {
+    newData[dataValue][3] = "  |  ";
+  }
+
 
   strokeData.data &&
     strokeData.data.forEach((data) => {
@@ -162,7 +171,7 @@ const Heatmaps = (props) => {
   return (
     <>
       <div className="row">
-        <div className="col s12 m6 l6 xl6 offset-xl3 offset-l3 center">
+        <div className="col s12 center">
           <span className="btn-flat">{new Date().toString().slice(0, 15)}</span>
           <div className="divider black" style={{ padding: "1px" }}></div>
           <br />
@@ -175,16 +184,15 @@ const Heatmaps = (props) => {
             height={70}
             squares
             onClick={(x, y) =>
-              x < 3
+              x < 15
                 ? window.M.toast({ html: "Left Side of the table" })
-                : window.M.toast({ html: "Right side of the table" })
+                : x === 15 ? window.M.toast({ html: "Net" }) : window.M.toast({ html: "Right side of the table" })
             }
-            // onClick={(x, y) => alert(`Clicked ${x + 1}, ${y + 1}`)}
             cellStyle={(background, value, min, max, data, x, y) => ({
-              background: `rgba(66, 86, 244, ${
+              background: `rgba(80, 96, 230, ${
                 1 - (max - value) / (max - min)
               })`,
-              fontSize: "20px",
+              fontSize: "17px",
             })}
             cellRender={(value) => value && `${value}`}
             title={(value, unit) => `${value}`}
