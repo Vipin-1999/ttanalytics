@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 var JSONdata = "";
+var fileName = "";
 
 class Fileupload extends Component {
   onReaderLoad(event) {
@@ -8,6 +9,12 @@ class Fileupload extends Component {
     JSONdata = JSON.parse(event.target.result);
   }
   inputHandler = (event) => {
+    fileName =
+      event.target.value.slice(12, 15) +
+      " " +
+      event.target.value.slice(15, 17) +
+      " " +
+      event.target.value.slice(17, 20);
     var reader = new FileReader();
     reader.onload = this.onReaderLoad;
     reader.readAsText(event.target.files[0]);
@@ -17,6 +24,7 @@ class Fileupload extends Component {
     this.props.history.push({
       pathname: "/heatmap",
       JSONdata: JSONdata,
+      fileName: fileName,
     });
   };
   render() {
@@ -36,10 +44,7 @@ class Fileupload extends Component {
                 <input className="file-path validate" type="text" />
               </div>
               <div className="input-field right">
-                <button
-                  className="btn waves-effect waves-light"
-                  type="submit"
-                >
+                <button className="btn waves-effect waves-light" type="submit">
                   Upload
                 </button>
               </div>
